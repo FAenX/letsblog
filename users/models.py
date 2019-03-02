@@ -6,22 +6,30 @@ from django.db import models
 
 # Create your models here.
 
+from django.db import models
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
-class User(models.Model):
-    """[summary]
 
-    Arguments:
-        models {[type]} -- [description]
-    """
+class Profile(models.Model):
 
     LANGUAGE_CHOICES = [
         ('Python', 'python'),
         ('Javascript', 'javascript'),
         ('Java', 'java'),
     ]
-    first_name = models.CharField(max_length=30)
-    second_name = models.CharField(max_length=30)
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    bio = models.TextField(max_length=500, blank=True)
+    location = models.CharField(max_length=30, blank=True)
+    birth_date = models.DateField(null=True, blank=True)
+    email_confirmed = models.BooleanField(default=False)
     language = models.CharField(max_length=30, choices=LANGUAGE_CHOICES)
 
-    def __str__(self):
-        return f'{self.first_name} {self.second_name} is doing {self.language}'
+
+@receiver(post_save, sender=User)
+def update_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+    instance.profile.save()
