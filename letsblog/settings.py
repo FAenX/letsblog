@@ -112,7 +112,7 @@ REST_FRAMEWORK = {
     ]
 }
 
-LOGIN_REDIRECT_URL = '/api/andelans/'
+LOGIN_REDIRECT_URL = '/api/users/'
 
 
 # Internationalization
