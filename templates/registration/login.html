@@ -5,13 +5,12 @@
 <div id="form-container">
     <form method="post">
         {% csrf_token %}
-        {% for field in form %}
         <div>
             <div div class="form-group">
                 {{ form.as_p }}
             </div>
             {% endfor %}
-            <button type="submit" class="btn btn-primary">Log in/button>
+            <button type="submit" class="btn btn-primary">Log in>
           
         </div>
     </form>
