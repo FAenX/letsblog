@@ -56,7 +56,7 @@ ROOT_URLCONF = 'letsblog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -70,6 +70,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'letsblog.wsgi.application'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
 
 
 # Database
