@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Login up</h2>
+<h2>Login</h2>
 <div id="form-container">
     <form method="post">
         {% csrf_token %}
@@ -11,7 +11,7 @@
                 {{ form.as_p }}
             </div>
             {% endfor %}
-            <button type="submit" class="btn btn-primary">Sign up</button>
+            <button type="submit" class="btn btn-primary">Log in/button>
           
         </div>
     </form>
